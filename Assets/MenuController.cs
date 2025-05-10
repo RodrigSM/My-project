@@ -15,6 +15,9 @@ public class MenuController : MonoBehaviour
     [Header("Help Panel Elements")]
     public TextMeshProUGUI bestTimeText;
 
+    public GameObject player; // referenciado no editor ou encontrado via tag
+
+
     private const string BestTimeKey = "BestTime";
 
 
@@ -29,6 +32,11 @@ public class MenuController : MonoBehaviour
 
     public void OnPlayButton()
     {
+        Time.timeScale = 1f;
+
+        // (Opcional) Garante que o cursor volta a ficar travado e invisível
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
         SceneManager.LoadScene("SampleScene");
     }
 

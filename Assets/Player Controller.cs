@@ -17,8 +17,15 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
+
         Cursor.lockState = CursorLockMode.Locked;
         rb = GetComponent<Rigidbody>();
+    }
+
+    void Awake()
+    {
+        rb = GetComponent<Rigidbody>();
+        ResetState();
     }
 
     void Update()
@@ -35,6 +42,8 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    
+
     void FixedUpdate()
     {
         //HandleMovement();
@@ -44,7 +53,6 @@ public class PlayerController : MonoBehaviour
 
     void HandleMouseLook()
     {
-        Debug.Log("CAn move2");
         float mouseX = Input.GetAxis("Mouse X") * sensitivity;
         float mouseY = Input.GetAxis("Mouse Y") * sensitivity;
 
@@ -70,5 +78,20 @@ public class PlayerController : MonoBehaviour
     void CheckGrounded()
     {
         grounded = Physics.Raycast(transform.position, Vector3.down, 1.1f);
+    }
+
+    public void ResetState()
+    {
+        canMove = true;
+        canLook = true;
+
+        if (rb != null)
+        {
+            rb.isKinematic = false;
+            rb.velocity = Vector3.zero;
+            rb.angularVelocity = Vector3.zero;
+        }
+
+        Debug.Log("Player state reset.");
     }
 }

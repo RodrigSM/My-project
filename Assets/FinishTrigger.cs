@@ -15,6 +15,8 @@ public class FinishTrigger : MonoBehaviour
     [Tooltip("The restart button inside the finish panel.")]
     public Button restartButton;
 
+    public Button mainMenuButton;
+
     // Automatically found TextMeshProUGUI inside the finishPanel
     private TextMeshProUGUI finishTimeText;
 
@@ -36,6 +38,12 @@ public class FinishTrigger : MonoBehaviour
                 restartButton = finishPanel.GetComponentInChildren<Button>(true);
             if (restartButton != null)
                 restartButton.onClick.AddListener(RestartGame);
+
+            if (mainMenuButton == null)
+                mainMenuButton = finishPanel.GetComponentInChildren<Button>(true);
+            if (mainMenuButton != null)
+                mainMenuButton.onClick.AddListener(OnMainMenu);
+
             else
                 Debug.LogWarning("No Button found for restart on finishPanel.");
         }
@@ -133,6 +141,11 @@ public class FinishTrigger : MonoBehaviour
 
         // Reload the active scene
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void OnMainMenu()
+    {
+        SceneManager.LoadScene("MainMenu");
     }
 }
 
