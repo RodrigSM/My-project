@@ -35,6 +35,7 @@ public class TimerDisplay : MonoBehaviour
     /// </summary>
     public float GetTime()
     {
+        timerText.color = Color.white;
         return elapsedTime;
     }
 
@@ -52,6 +53,7 @@ public class TimerDisplay : MonoBehaviour
             timerText = GetComponent<TextMeshProUGUI>();
         }
 
+        timerText.color = Color.white;
         // Initialize display
         ResetTimer();
     }

@@ -66,7 +66,7 @@ public class FinishTrigger : MonoBehaviour
         // require the Player tag
         if (!other.CompareTag("Player")) return;
         hasFinished = true;
-
+        finishTimeText.color = Color.white; 
         // Stop timer
         timerDisplay?.StopTimer();
 
@@ -111,6 +111,8 @@ public class FinishTrigger : MonoBehaviour
             finishTimeText.text = isNewBest
                 ? $"New Best!\nTime: {timeStr}"
                 : $"Time: {timeStr}\nBest: {bestTimeStr}";
+
+            finishTimeText.color = Color.yellow;
             finishPanel.SetActive(true);
         }
 
